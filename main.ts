@@ -1,10 +1,41 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 . 
+        2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 2 
+        1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, MainShip, 100, 0)
+})
 function PowerUps () {
     list = [0, 1]
 }
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(sprite)
+    sprites.destroy(otherSprite)
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    sprites.destroy(otherSprite, effects.disintegrate, 500)
+    scene.cameraShake(4, 500)
+})
+let projectile2: Sprite = null
 let EnemyShip: Sprite = null
 let list: number[] = []
-let MainShip = sprites.create(assets.image`Civilianship`, SpriteKind.Player)
-controller.moveSprite(MainShip)
+let projectile: Sprite = null
+let MainShip: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -127,6 +158,10 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+MainShip = sprites.create(assets.image`Civilianship`, SpriteKind.Player)
+controller.moveSprite(MainShip, 100, 100)
+MainShip.setStayInScreen(true)
+info.setLife(3)
 game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(img`
         ................................
@@ -165,4 +200,22 @@ game.onUpdateInterval(2000, function () {
     EnemyShip.x = scene.screenWidth()
     EnemyShip.vx = -20
     EnemyShip.y = randint(10, scene.screenHeight() - 10)
+    projectile2 = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . f f f f f f 8 8 8 8 8 8 8 8 8 
+        f 8 8 8 8 8 8 f f f f f f f f f 
+        . f f f f f f 8 8 8 8 8 8 8 8 8 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, EnemyShip, 50, 50)
 })
