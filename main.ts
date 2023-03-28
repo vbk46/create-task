@@ -1,6 +1,7 @@
 function PowerUps () {
-	
+    list = [0, 1]
 }
+let list: number[] = []
 let MainShip = sprites.create(assets.image`Civilianship`, SpriteKind.Player)
 let EnemyShip = sprites.create(img`
     ...............ff...............
