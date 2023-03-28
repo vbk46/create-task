@@ -1,3 +1,6 @@
+function PowerUps () {
+	
+}
 let MainShip = sprites.create(assets.image`Civilianship`, SpriteKind.Player)
 let EnemyShip = sprites.create(img`
     ...............ff...............
