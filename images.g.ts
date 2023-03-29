@@ -38,6 +38,25 @@ namespace myImages {
 ................................
 ................................
 `;
+            case "image2":
+            case "Speed":return img`
+. . . . . f f f f f f . . 5 . . 
+. . . f f f f f f f f f 5 5 . . 
+. . f f f 2 2 2 2 2 5 5 5 f . . 
+. f f f 2 2 2 2 2 5 5 5 f f f . 
+. f f 2 2 2 2 2 5 5 5 2 2 f f . 
+f f 2 2 2 2 2 5 5 5 5 2 2 2 f f 
+f f 2 2 2 2 5 5 5 5 2 2 2 2 f f 
+f f 2 2 2 5 5 5 5 2 2 2 2 2 f f 
+f f 2 2 5 5 5 5 5 5 5 5 5 2 f f 
+f f 2 5 5 5 5 5 5 5 5 5 2 2 f f 
+f f 2 2 2 2 2 5 5 5 5 2 2 2 f f 
+. f f 2 2 2 2 5 5 5 2 2 2 f f . 
+. f f f 2 2 5 5 5 2 2 2 f f f . 
+. . f f f 5 5 5 2 2 2 f f f . . 
+. . . f f 5 5 f f f f f f . . . 
+. . . . 5 5 f f f f f . . . . . 
+`;
         }
         return null;
     })

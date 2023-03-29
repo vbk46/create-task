@@ -160,6 +160,7 @@ scene.setBackgroundImage(img`
     `)
 MainShip = sprites.create(assets.image`Civilianship`, SpriteKind.Player)
 controller.moveSprite(MainShip, 100, 100)
+let speed = sprites.create(assets.image`Speed`, SpriteKind.Player)
 MainShip.setStayInScreen(true)
 info.setLife(3)
 game.onUpdateInterval(2000, function () {
